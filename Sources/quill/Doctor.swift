@@ -77,7 +77,7 @@ enum DoctorReport {
     }
 
     /// Never discover a missing model after an important meeting: report
-    /// whether the parakeet models are already in FluidAudio's cache.
+    /// whether the Parakeet v3 models are already in FluidAudio's cache.
     static func checkTranscription() -> Check {
         guard Config.transcriptionEnabled() else {
             return Check(
@@ -86,8 +86,8 @@ enum DoctorReport {
                 remediation: nil
             )
         }
-        let cache = AsrModels.defaultCacheDirectory(for: .v2)
-        if AsrModels.modelsExist(at: cache, version: .v2) {
+        let cache = AsrModels.defaultCacheDirectory(for: .v3)
+        if AsrModels.modelsExist(at: cache, version: .v3) {
             return Check(name: "transcription", status: .ok, remediation: nil)
         }
         return Check(
