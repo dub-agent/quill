@@ -3,7 +3,7 @@ import CoreML
 import FluidAudio
 import Foundation
 
-/// Parakeet TDT 0.6B v3 (25 European languages, including Russian) via
+/// Parakeet Ultra (v3 post-training) (25 European languages, including Russian) via
 /// FluidAudio's Core ML port. Models
 /// download once into FluidAudio's managed cache (~600 MB); after that,
 /// transcription runs entirely on-device at roughly 20 seconds per hour of
@@ -24,7 +24,7 @@ actor ParakeetEngine: TranscriptionEngine {
     }
 
     nonisolated let name = "parakeet"
-    nonisolated let model = "parakeet-tdt-0.6b-v3-coreml"
+    nonisolated let model = "parakeet-ultra-coreml"
 
     private var manager: AsrManager?
 
@@ -37,7 +37,7 @@ actor ParakeetEngine: TranscriptionEngine {
         // WER-neutral, faster on Apple Silicon, and avoids that E5RT failure.
         // The small decoder/joint models keep FluidAudio's normal settings.
         let models = try await AsrModels.downloadAndLoad(
-            version: .v3,
+            version: .ultra,
             encoderComputeUnits: .cpuAndGPU
         )
         let manager = AsrManager()

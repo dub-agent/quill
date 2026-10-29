@@ -7,7 +7,7 @@ import Foundation
 /// to macOS while the tray and audio capture stay in the lightweight parent.
 final class SubprocessTranscriptionEngine: TranscriptionEngine, @unchecked Sendable {
     let name = "parakeet"
-    let model = "parakeet-tdt-0.6b-v3-coreml"
+    let model = "parakeet-ultra-coreml"
 
     private let executableURL: URL?
     private let ioQueue = DispatchQueue(label: "quill.transcription-worker.io", qos: .userInitiated)
